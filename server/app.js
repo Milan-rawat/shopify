@@ -1,12 +1,15 @@
 const express = require("express");
 
+const tourRouter = require("./routes/tourRoutes");
+
+// Start express app
 const app = express();
 
+// Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/", (req, res) => {
-  res.status(200).send("<h1>Hello from the server!</h1>");
-});
+// Routes
+app.use("/api/v1/tours", tourRouter);
 
 module.exports = app;
