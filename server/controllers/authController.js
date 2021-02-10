@@ -33,40 +33,42 @@ const createSendToken = (user, statusCode, req, res) => {
   });
 };
 
-exports.signup = catchAsync(async (req, res, next) => {
-  if (await User.findOne({ email: req.body.email })) {
-    return next(new AppError("Email already exists! Use different.", 400));
-  }
+exports.signup = (Model) =>
+  catchAsync(async (req, res, next) => {
+    if (await Model.findOne({ email: req.body.email })) {
+      return next(new AppError("Email already exists! Use different.", 400));
+    }
 
-  const newUser = await User.create({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
-    photo: req.body.photo,
-    password: req.body.password,
-    passwordConfirm: req.body.passwordConfirm,
+    const newDoc = await Model.create({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      photo: req.body.photo,
+      password: req.body.password,
+      passwordConfirm: req.body.passwordConfirm,
+    });
+
+    createSendToken(newDoc, 201, req, res);
   });
 
-  createSendToken(newUser, 201, req, res);
-});
+exports.login = (Model) =>
+  catchAsync(async (req, res, next) => {
+    const { email, password } = req.body;
+    // 1) Check if email and password exists
+    if (!email || !password) {
+      return next(new AppError("Please provide email and password", 400));
+    }
 
-exports.login = catchAsync(async (req, res, next) => {
-  const { email, password } = req.body;
-  // 1) Check if email and password exists
-  if (!email || !password) {
-    return next(new AppError("Please provide email and password", 400));
-  }
+    // 2) Check if user exists && password is correct
+    const doc = await Model.findOne({ email: email }).select("+password");
 
-  // 2) Check if user exists && password is correct
-  const user = await User.findOne({ email: email }).select("+password");
+    if (!doc || !(await doc.correctPassword(password, doc.password))) {
+      return next(new AppError("Incorrect email or password", 401));
+    }
 
-  if (!user || !(await user.correctPassword(password, user.password))) {
-    return next(new AppError("Incorrect email or password", 401));
-  }
-
-  // 3) If eveything is ok, send token to client
-  createSendToken(user, 200, req, res);
-});
+    // 3) If eveything is ok, send token to client
+    createSendToken(doc, 200, req, res);
+  });
 
 exports.protect = catchAsync(async (req, res, next) => {
   // 1) Getting token and check of it's true

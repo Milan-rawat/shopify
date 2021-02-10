@@ -1,44 +1,46 @@
 const User = require("../models/userModel");
+const Seller = require("../models/sellerModel");
 const catchAsync = require("../utils/catchAsync");
 
-exports.getAllUsers = catchAsync(async (req, res, next) => {
-  const users = await User.find({});
+exports.getAll = (Model) =>
+  catchAsync(async (req, res, next) => {
+    const docs = await Model.find({});
 
-  res.status(200).json({
-    status: "success",
-    results: users.length,
-    data: users,
+    res.status(200).json({
+      status: "success",
+      results: docs.length,
+      data: docs,
+    });
   });
-});
 
-exports.createUser = async (req, res) => {
+exports.createOne = (Model) => async (req, res) => {
   res.status(200).json({
     status: "error",
     message: "Please use /signup instead!",
   });
 };
 
-exports.getUser = async (req, res) => {
-  const user = await User.findById(req.params.id);
+exports.getOne = (Model) => async (req, res) => {
+  const doc = await Model.findById(req.params.id);
 
   res.status(200).json({
     status: "success",
-    data: user,
+    data: doc,
   });
 };
 
-exports.updateUser = async (req, res) => {
-  const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {
+exports.updateOne = (Model) => async (req, res) => {
+  const updatedDoc = await Model.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
   });
   res.status(200).json({
     status: "success",
-    data: updatedUser,
+    data: updatedDoc,
   });
 };
 
-exports.deleteUser = async (req, res) => {
+exports.deleteOne = (Model) => async (req, res) => {
   res.status(200).json({
     status: "error",
     message: "You do not have permission to delete users!",
