@@ -4,7 +4,8 @@
   "description": "product selling project",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "start:prod": "NODE_ENV=production nodemon server.js"
   },
   "author": "Milan Rawat",
   "license": "ISC",
