@@ -15,13 +15,10 @@ exports.createProduct = catchAsync(async (req, res, next) => {
     prd_Seller: req.user._id,
   });
 
-  //   req.user.sellingProducts[req.user.sellingProducts.length] = product._id;
-  User.findByIdAndUpdate(
-    req.user._id,
-    { sellingProducts: product._id },
+  await User.findOneAndUpdate(
+    { _id: req.user._id },
     {
-      new: true,
-      runValidators: true,
+      $push: { sellingProducts: product._id },
     }
   );
 
