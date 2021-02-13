@@ -1,4 +1,5 @@
 const User = require("../models/userModel");
+const Seller = require("../models/sellerModel");
 const Product = require("../models/productModel");
 const catchAsync = require("../utils/catchAsync");
 
@@ -15,7 +16,7 @@ exports.createProduct = catchAsync(async (req, res, next) => {
     prd_Seller: req.user._id,
   });
 
-  await User.findOneAndUpdate(
+  await Seller.findByIdAndUpdate(
     { _id: req.user._id },
     {
       $push: { sellingProducts: product._id },
