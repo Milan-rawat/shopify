@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.post("/signup", authController.signup(Seller));
 router.post("/login", authController.login(Seller));
+router.post("/getMe", userController.getMe, userController.getOne(Seller));
 
 router
   .route("/")
