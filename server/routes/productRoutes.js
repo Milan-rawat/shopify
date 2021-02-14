@@ -10,7 +10,7 @@ router
   .route("/")
   .get(productController.getAllProducts)
   .post(
-    authController.protect(Seller),
+    authController.protect,
     authController.allowedTo("seller"),
     productController.createProduct
   );
@@ -18,7 +18,11 @@ router
 router
   .route("/:id")
   .get(productController.getProduct)
-  .patch(productController.updateProduct)
+  .patch(
+    authController.protect,
+    authController.allowedTo("seller"),
+    productController.updateProduct
+  )
   .delete(productController.deleteProduct);
 
 module.exports = router;
