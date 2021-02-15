@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const slugify = require("slugify");
 
 const productSchema = new mongoose.Schema(
   {
@@ -47,6 +48,7 @@ const productSchema = new mongoose.Schema(
         "A Product description must have more or equal 50 characters",
       ],
     },
+    prd_slug: String,
     prd_Seller: {
       type: mongoose.Schema.ObjectId,
       ref: "Seller",
@@ -65,6 +67,18 @@ const productSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+// DOCUMENT MIDDLEWARE: runs before .save() and .create()
+productSchema.pre("save", function (next) {
+  this.slug = slugify(this.name, { lower: true });
+  next();
+});
+
+// QUERY MIDDLEWARE
+productSchema.pre(/^find/, function (next) {
+  this.find({ active: { $ne: true } });
+  next();
+});
 
 const Product = mongoose.model("Product", productSchema);
 
