@@ -23,6 +23,10 @@ router
     authController.allowedTo("seller"),
     productController.updateProduct
   )
-  .delete(productController.deleteProduct);
+  .delete(
+    authController.protect,
+    authController.allowedTo("seller"),
+    productController.deleteProduct
+  );
 
 module.exports = router;
