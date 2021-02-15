@@ -70,7 +70,7 @@ const productSchema = new mongoose.Schema(
 
 // DOCUMENT MIDDLEWARE: runs before .save() and .create()
 productSchema.pre("save", function (next) {
-  this.slug = slugify(this.name, { lower: true });
+  this.prd_slug = slugify(this.name, { lower: true });
   next();
 });
 
