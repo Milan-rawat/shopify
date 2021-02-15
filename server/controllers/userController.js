@@ -7,6 +7,16 @@ exports.getMe = (req, res, next) => {
   next();
 };
 
+exports.deleteMe = (Model) =>
+  catchAsync(async (req, res, next) => {
+    await Model.findByIdAndUpdate(req.user.id, { active: false });
+
+    res.status(204).json({
+      status: "success",
+      data: null,
+    });
+  });
+
 exports.getAll = (Model) =>
   catchAsync(async (req, res, next) => {
     const docs = await Model.find({});

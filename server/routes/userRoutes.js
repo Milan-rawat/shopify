@@ -8,6 +8,11 @@ const router = express.Router();
 router.post("/signup", authController.signup(User));
 router.post("/login", authController.login(User));
 router.post("/getMe", userController.getMe, userController.getOne(User));
+router.delete(
+  "/deleteMe",
+  authController.protect,
+  userController.deleteMe(User)
+);
 
 router
   .route("/")
