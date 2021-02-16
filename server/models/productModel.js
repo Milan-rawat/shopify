@@ -76,7 +76,7 @@ productSchema.pre("save", function (next) {
 
 // QUERY MIDDLEWARE
 productSchema.pre(/^find/, function (next) {
-  this.find({ active: { $ne: true } });
+  this.find({ active: { $ne: false } });
   next();
 });
 
