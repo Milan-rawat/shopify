@@ -18,6 +18,7 @@ app.use(cookieParser());
 // Routes
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/sellers", sellerRouter);
+app.use("/api/v1/reviews", reviewRouter);
 app.use("/api/v1/products", productRouter);
 
 app.all("*", (req, res, next) => {
