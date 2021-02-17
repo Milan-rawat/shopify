@@ -30,18 +30,18 @@ exports.updateReview = catchAsync(async (req, res, next) => {
     }
   );
 
-  res.status(204).json({
+  res.status(200).json({
     status: "success",
     data: updatedReview,
   });
 });
 
 exports.getReview = catchAsync(async (req, res, next) => {
-  const newReview = await Review.create(req.body);
+  const review = await Review.findById(req.params.id);
 
   res.status(201).json({
     status: "success",
-    data: newReview,
+    data: review,
   });
 });
 

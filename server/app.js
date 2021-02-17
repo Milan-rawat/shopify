@@ -5,6 +5,7 @@ const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controllers/errorController");
 const userRouter = require("./routes/userRoutes");
 const sellerRouter = require("./routes/sellerRoutes");
+const reviewRouter = require("./routes/reviewRoutes");
 const productRouter = require("./routes/productRoutes");
 
 // Start express app
