@@ -14,15 +14,20 @@ const reviewSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  tour: {
+  product: {
     type: mongoose.Schema.ObjectId,
     ref: "Product",
-    required: [true, "Review must belong to a tour."],
+    required: [true, "Review must belong to a product."],
   },
   user: {
     type: mongoose.Schema.ObjectId,
     ref: "User",
     required: [true, "Review must belong to a user."],
+  },
+  active: {
+    type: Boolean,
+    // select: false,
+    default: true,
   },
 });
 
