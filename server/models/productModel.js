@@ -7,6 +7,12 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: [true, "Product must have a name!"],
     },
+    prd_reviews: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "Product",
+      },
+    ],
     prd_category: {
       type: String,
       reuired: [true, "Product must have a Category!"],
