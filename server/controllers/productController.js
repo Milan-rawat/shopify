@@ -13,7 +13,7 @@ exports.createProduct = catchAsync(async (req, res, next) => {
     prd_imageMain: req.body.prd_imageMain,
     prd_images: req.body.prd_images,
     prd_description: req.body.prd_description,
-    prd_Seller: req.user._id,
+    prd_seller: req.user._id,
   });
 
   await Seller.findByIdAndUpdate(

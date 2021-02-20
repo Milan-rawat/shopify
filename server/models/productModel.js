@@ -10,7 +10,7 @@ const productSchema = new mongoose.Schema(
     prd_reviews: [
       {
         type: mongoose.Schema.ObjectId,
-        ref: "Product",
+        ref: "Review",
       },
     ],
     prd_category: {
@@ -55,7 +55,7 @@ const productSchema = new mongoose.Schema(
       ],
     },
     prd_slug: String,
-    prd_Seller: {
+    prd_seller: {
       type: mongoose.Schema.ObjectId,
       ref: "Seller",
     },
@@ -76,13 +76,24 @@ const productSchema = new mongoose.Schema(
 
 // DOCUMENT MIDDLEWARE: runs before .save() and .create()
 productSchema.pre("save", function (next) {
-  this.prd_slug = slugify(this.name, { lower: true });
+  this.prd_slug = slugify(this.prd_name, { lower: true });
   next();
 });
 
 // QUERY MIDDLEWARE
 productSchema.pre(/^find/, function (next) {
   this.find({ active: { $ne: false } });
+  next();
+});
+
+productSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: "prd_reviews",
+    select: "review rating product user",
+  }).populate({
+    path: "prd_seller",
+    select: "firstName lastName email photo",
+  });
   next();
 });
 
