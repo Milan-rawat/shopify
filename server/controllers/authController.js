@@ -5,6 +5,7 @@ const User = require("../models/userModel");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
 const Seller = require("../models/sellerModel");
+const Email = require("./../utils/email");
 
 const signToken = (id) => {
   return jwt.sign({ id: id }, process.env.JWT_SECRET, {
@@ -48,6 +49,8 @@ exports.signup = (Model) =>
       password: req.body.password,
       passwordConfirm: req.body.passwordConfirm,
     });
+    url = "hello";
+    await new Email(newDoc, url).sendWelcome();
 
     createSendToken(newDoc, 201, req, res);
   });
