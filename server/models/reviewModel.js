@@ -26,9 +26,23 @@ const reviewSchema = new mongoose.Schema({
   },
   active: {
     type: Boolean,
-    // select: false,
+    select: false,
     default: true,
   },
+});
+
+// QUERY MIDDLEWARE
+reviewSchema.pre(/^find/, function (next) {
+  this.find({ active: { $ne: false } });
+  next();
+});
+
+reviewSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: "user",
+    select: "firstName lastName photo",
+  });
+  next();
 });
 
 const Review = mongoose.model("Review", reviewSchema);
