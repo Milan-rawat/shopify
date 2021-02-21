@@ -71,6 +71,10 @@ const productSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
+  },
+  {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
   }
 );
 
@@ -80,6 +84,13 @@ productSchema.pre("save", function (next) {
   next();
 });
 
+// Virtual populate
+// productSchema.virtual("reviews", {
+//   ref: "Review",
+//   foreignField: "product",
+//   localField: "_id",
+// });
+
 // QUERY MIDDLEWARE
 productSchema.pre(/^find/, function (next) {
   this.find({ active: { $ne: false } });
@@ -88,11 +99,11 @@ productSchema.pre(/^find/, function (next) {
 
 productSchema.pre(/^find/, function (next) {
   this.populate({
-    path: "prd_reviews",
-    select: "review rating product user",
-  }).populate({
     path: "prd_seller",
     select: "firstName lastName email photo",
+  }).populate({
+    path: "prd_reviews",
+    select: "review rating",
   });
   next();
 });
