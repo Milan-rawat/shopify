@@ -23,7 +23,7 @@ const productSchema = new mongoose.Schema(
     },
     prd_ratingsAverage: {
       type: Number,
-      default: 5,
+      default: 4.5,
       min: [1, "Rating must be above 1.0"],
       max: [5, "Rating must be below 5.0"],
       set: (val) => Math.round(val * 10) / 10,
@@ -71,10 +71,6 @@ const productSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  },
-  {
-    toJSON: { virtuals: true },
-    toObject: { virtuals: true },
   }
 );
 
@@ -83,13 +79,6 @@ productSchema.pre("save", function (next) {
   this.prd_slug = slugify(this.prd_name, { lower: true });
   next();
 });
-
-// Virtual populate
-// productSchema.virtual("reviews", {
-//   ref: "Review",
-//   foreignField: "product",
-//   localField: "_id",
-// });
 
 // QUERY MIDDLEWARE
 productSchema.pre(/^find/, function (next) {
