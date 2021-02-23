@@ -1,3 +1,4 @@
+const crypto = require("crypto");
 const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
@@ -54,9 +55,15 @@ const sellerSchema = new mongoose.Schema(
     passwordChangedAt: Date,
     passwordResetToken: String,
     passwordResetExpires: Date,
+    emailConfirmed: {
+      type: Boolean,
+      default: false,
+    },
+    signupConfirmationToken: String,
+    signupConfirmationExpires: Date,
     active: {
       type: Boolean,
-      default: true,
+      default: false,
       select: false,
     },
   },
@@ -109,6 +116,21 @@ sellerSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
 
   //   False means NOT changed
   return false;
+};
+
+sellerSchema.methods.createSignupToken = function () {
+  const resetToken = crypto.randomBytes(32).toString("hex");
+
+  this.signupConfirmationToken = crypto
+    .createHash("sha256")
+    .update(resetToken)
+    .digest("hex");
+
+  console.log({ resetToken }, this.signupConfirmationToken);
+
+  this.signupConfirmationExpires = Date.now() + 10 * 60 * 1000;
+
+  return resetToken;
 };
 
 const Seller = mongoose.model("Seller", sellerSchema);

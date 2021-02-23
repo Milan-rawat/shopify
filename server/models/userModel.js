@@ -54,9 +54,15 @@ const userSchema = new mongoose.Schema(
     passwordChangedAt: Date,
     passwordResetToken: String,
     passwordResetExpires: Date,
+    emailConfirmed: {
+      type: Boolean,
+      default: false,
+    },
+    signupConfirmationToken: String,
+    signupConfirmationExpires: Date,
     active: {
       type: Boolean,
-      default: true,
+      default: false,
       select: false,
     },
   },
@@ -111,20 +117,20 @@ userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
   return false;
 };
 
-// userSchema.methods.createPasswordResetToken = function () {
-//   const resetToken = crypto.randomBytes(32).toString('hex');
+userSchema.methods.createSignupToken = function () {
+  const resetToken = crypto.randomBytes(32).toString("hex");
 
-//   this.passwordResetToken = crypto
-//     .createHash('sha256')
-//     .update(resetToken)
-//     .digest('hex');
+  this.signupConfirmationToken = crypto
+    .createHash("sha256")
+    .update(resetToken)
+    .digest("hex");
 
-//   // console.log({ resetToken }, this.passwordResetToken);
+  console.log({ resetToken }, this.signupConfirmationToken);
 
-//   this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
+  this.signupConfirmationExpires = Date.now() + 10 * 60 * 1000;
 
-//   return resetToken;
-// };
+  return resetToken;
+};
 
 const User = mongoose.model("User", userSchema);
 

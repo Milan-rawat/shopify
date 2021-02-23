@@ -49,10 +49,36 @@ exports.signup = (Model) =>
       password: req.body.password,
       passwordConfirm: req.body.passwordConfirm,
     });
-    url = "hello";
-    await new Email(newDoc, url).sendWelcome();
 
-    createSendToken(newDoc, 201, req, res);
+    const signupToken = newDoc.createSignupToken();
+    await newDoc.save({ validateBeforeSave: false });
+
+    try {
+      const signupURL = `${req.protocol}://${req.get("host")}/api/v1/${
+        newDoc.role
+      }s/signupConfirmation/${signupToken}`;
+
+      await new Email(newDoc, signupURL).sendWelcome();
+
+      res.status(200).json({
+        status: "success",
+        message: "Token sent to your email, Confirm your email.",
+      });
+    } catch (err) {
+      console.log("ERROR", err);
+      newDoc.signupConfirmationToken = undefined;
+      newDoc.signupConfirmationExpires = undefined;
+      await newDoc.delete();
+
+      return next(
+        new AppError(
+          "There was an error creating your account. Try again later!"
+        ),
+        500
+      );
+    }
+
+    // createSendToken(newDoc, 201, req, res);
   });
 
 exports.login = (Model) =>
