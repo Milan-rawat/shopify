@@ -63,7 +63,7 @@ const sellerSchema = new mongoose.Schema(
     emailConfirmationExpires: Date,
     active: {
       type: Boolean,
-      default: false,
+      default: true,
       select: false,
     },
   },
@@ -91,11 +91,11 @@ sellerSchema.pre("save", function (next) {
   next();
 });
 
-// sellerSchema.pre(/^find/, function (next) {
-//   // this points to current query
-//   this.find({ active: { $ne: false } });
-//   next();
-// });
+sellerSchema.pre(/^find/, function (next) {
+  // this points to current query
+  this.find({ active: { $ne: false } });
+  next();
+});
 
 sellerSchema.methods.correctPassword = async function (
   candidatePassword,
