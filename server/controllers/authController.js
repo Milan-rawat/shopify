@@ -56,18 +56,18 @@ exports.signup = (Model) =>
     try {
       const signupURL = `${req.protocol}://${req.get("host")}/api/v1/${
         newDoc.role
-      }s/signupConfirmation/${signupToken}`;
+      }s/emailConfirmation/${signupToken}`;
 
       await new Email(newDoc, signupURL).sendWelcome();
 
       res.status(200).json({
         status: "success",
-        message: "Token sent to your email, Confirm your email.",
+        message: "Token sent to your email, Verify your email.",
       });
     } catch (err) {
       console.log("ERROR", err);
-      newDoc.signupConfirmationToken = undefined;
-      newDoc.signupConfirmationExpires = undefined;
+      newDoc.emailConfirmationToken = undefined;
+      newDoc.emailConfirmationExpires = undefined;
       await newDoc.delete();
 
       return next(
@@ -77,8 +77,33 @@ exports.signup = (Model) =>
         500
       );
     }
+  });
 
-    // createSendToken(newDoc, 201, req, res);
+exports.emailConfirmation = (Model) =>
+  catchAsync(async (req, res, next) => {
+    // Getting user or seller based on token
+    const hashedToken = crypto
+      .createHash("sha256")
+      .update(req.params.token)
+      .digest("hex");
+
+    const user = await Model.findOne({
+      emailConfirmationToken: hashedToken,
+      emailConfirmationExpires: { $gt: Date.now() },
+    });
+
+    if (!user) {
+      return next(new AppError("Token is Invalid or has expired!", 400));
+    }
+
+    user.emailConfirmed = true;
+    user.active = true;
+    user.emailConfirmationToken = undefined;
+    user.emailConfirmationExpires = undefined;
+
+    const newDoc = await user.save({ validateBeforeSave: false });
+
+    createSendToken(newDoc, 200, req, res);
   });
 
 exports.login = (Model) =>

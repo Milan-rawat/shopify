@@ -58,8 +58,8 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    signupConfirmationToken: String,
-    signupConfirmationExpires: Date,
+    emailConfirmationToken: String,
+    emailConfirmationExpires: Date,
     active: {
       type: Boolean,
       default: false,
@@ -90,11 +90,11 @@ userSchema.pre("save", function (next) {
   next();
 });
 
-userSchema.pre(/^find/, function (next) {
-  // this points to current query
-  this.find({ active: { $ne: false } });
-  next();
-});
+// userSchema.pre(/^find/, function (next) {
+//   // this points to current query
+//   this.find({ active: { $ne: false } });
+//   next();
+// });
 
 userSchema.methods.correctPassword = async function (
   candidatePassword,
@@ -120,14 +120,14 @@ userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
 userSchema.methods.createSignupToken = function () {
   const resetToken = crypto.randomBytes(32).toString("hex");
 
-  this.signupConfirmationToken = crypto
+  this.emailConfirmationToken = crypto
     .createHash("sha256")
     .update(resetToken)
     .digest("hex");
 
-  console.log({ resetToken }, this.signupConfirmationToken);
+  console.log({ resetToken }, this.emailConfirmationToken);
 
-  this.signupConfirmationExpires = Date.now() + 10 * 60 * 1000;
+  this.emailConfirmationExpires = Date.now() + 15 * 60 * 1000;
 
   return resetToken;
 };

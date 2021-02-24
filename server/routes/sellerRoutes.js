@@ -6,6 +6,10 @@ const authController = require("../controllers/authController");
 const router = express.Router();
 
 router.post("/signup", authController.signup(Seller));
+router.post(
+  "/emailConfirmation/:token",
+  authController.emailConfirmation(Seller)
+);
 router.post("/login", authController.login(Seller));
 router.get(
   "/me",
