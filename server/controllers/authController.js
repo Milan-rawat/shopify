@@ -116,9 +116,9 @@ exports.login = (Model) =>
     // 2) Check if user exists && password is correct
     const doc = await Model.findOne({ email: email }).select("+password");
 
-    // if (!doc.emailConfirmed === true) {
-    //   return next(new AppError("Verify Your email first!", 400));
-    // }
+    if (!doc.emailConfirmed) {
+      return next(new AppError("Verify Your email first!", 400));
+    }
     if (!doc || !(await doc.correctPassword(password, doc.password))) {
       return next(new AppError("Incorrect email or password", 401));
     }
