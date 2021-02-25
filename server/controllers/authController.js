@@ -116,9 +116,9 @@ exports.login = (Model) =>
     // 2) Check if user exists && password is correct
     const doc = await Model.findOne({ email: email }).select("+password");
 
-    if (doc.emailConfirmed === false) {
-      return next(new AppError("Verify Your email first!", 400));
-    }
+    // if (!doc.emailConfirmed === true) {
+    //   return next(new AppError("Verify Your email first!", 400));
+    // }
     if (!doc || !(await doc.correctPassword(password, doc.password))) {
       return next(new AppError("Incorrect email or password", 401));
     }
@@ -206,7 +206,6 @@ exports.isLoggedIn = (Model) => async (req, res, next) => {
 
 exports.allowedTo = (role) => {
   return (req, res, next) => {
-    console.log(req.user);
     if (!(role === req.user.role)) {
       return next(
         new AppError("You do not have permission to perform this action", 403)

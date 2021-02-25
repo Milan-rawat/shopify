@@ -1,6 +1,7 @@
 const Review = require("../models/reviewModel");
 const Product = require("../models/productModel");
 const catchAsync = require("../utils/catchAsync");
+const AppError = require("../utils/appError");
 
 exports.getAllReviews = catchAsync(async (req, res, next) => {
   const reviews = await Review.find({});
@@ -34,18 +35,32 @@ exports.createReview = catchAsync(async (req, res, next) => {
 });
 
 exports.updateReview = catchAsync(async (req, res, next) => {
-  const updatedReview = await Review.findByIdAndUpdate(
-    req.params.id,
-    req.body,
-    {
-      new: true,
-      runValidators: true,
-    }
-  );
+  const review = await Review.findById(req.params.id);
+  if (!review.user._id.equals(req.user._id)) {
+    return next(
+      new AppError("You are not allowed to update oters review!", 401)
+    );
+  }
+  // const updatedReview = await Review.findByIdAndUpdate(
+  //   req.params.id,
+  //   req.body,
+  //   {
+  //     new: true,
+  //     runValidators: true,
+  //   }
+  // );
+  if (req.body.review) {
+    review.review = req.body.review;
+  }
+  if (req.body.rating) {
+    review.rating = req.body.rating;
+  }
+
+  await review.save();
 
   res.status(200).json({
     status: "success",
-    data: updatedReview,
+    data: review,
   });
 });
 
