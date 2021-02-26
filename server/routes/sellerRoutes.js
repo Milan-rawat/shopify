@@ -6,6 +6,7 @@ const authController = require("../controllers/authController");
 const router = express.Router();
 
 router.post("/signup", authController.signup(Seller));
+router.get("/emailVerification", userController.emailVerification(Seller));
 router.post(
   "/emailConfirmation/:token",
   authController.emailConfirmation(Seller)

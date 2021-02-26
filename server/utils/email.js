@@ -32,8 +32,7 @@ module.exports = class Email {
   }
 
   // Send the actual email
-  async send(subject) {
-    const text = `Hello ${this.firstname}!  This is your signup confirmation link ${this.url} (Valid for 15 minutes only) Team Shopify`;
+  async send(subject, text) {
     // Defining email options
     const mailOptions = {
       from: this.from,
@@ -48,6 +47,12 @@ module.exports = class Email {
   }
 
   async sendWelcome() {
-    await this.send("Welcome to the Shopify!");
+    const text = `Hello ${this.firstname}!  This is your signup confirmation link ${this.url} (Valid for 15 minutes only) Team Shopify`;
+    await this.send("Welcome to the Shopify!", text);
+  }
+
+  async sendVerification() {
+    const text = `Hello ${this.firstname}!  This is your email Verification link ${this.url} (Valid for 15 minutes only) Team Shopify`;
+    await this.send("Verify Shopify!", text);
   }
 };

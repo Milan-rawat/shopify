@@ -50,7 +50,7 @@ exports.signup = (Model) =>
       passwordConfirm: req.body.passwordConfirm,
     });
 
-    const signupToken = newDoc.createSignupToken();
+    const signupToken = newDoc.createToken();
     await newDoc.save({ validateBeforeSave: false });
 
     try {

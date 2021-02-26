@@ -117,7 +117,7 @@ userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
   return false;
 };
 
-userSchema.methods.createSignupToken = function () {
+userSchema.methods.createToken = function () {
   const resetToken = crypto.randomBytes(32).toString("hex");
 
   this.emailConfirmationToken = crypto

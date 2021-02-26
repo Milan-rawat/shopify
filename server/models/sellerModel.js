@@ -118,7 +118,7 @@ sellerSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
   return false;
 };
 
-sellerSchema.methods.createSignupToken = function () {
+sellerSchema.methods.createToken = function () {
   const resetToken = crypto.randomBytes(32).toString("hex");
 
   this.emailConfirmationToken = crypto
