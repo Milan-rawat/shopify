@@ -55,4 +55,9 @@ module.exports = class Email {
     const text = `Hello ${this.firstname}!  This is your email Verification link ${this.url} (Valid for 15 minutes only) Team Shopify`;
     await this.send("Verify Shopify!", text);
   }
+
+  async sendPasswordReset() {
+    const text = `Hello ${this.firstname}! This is your Password reset link ${this.url} (Valid for 15 mins only)  Team Shopify`;
+    await this.send("Reset Password!", text);
+  }
 };

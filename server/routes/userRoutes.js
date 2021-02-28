@@ -12,6 +12,7 @@ router.post(
   authController.emailConfirmation(User)
 );
 router.post("/login", authController.login(User));
+router.post("/forgetPassword", authController.forgetPassword(User));
 router.get(
   "/me",
   authController.protect,

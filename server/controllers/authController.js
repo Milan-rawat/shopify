@@ -127,6 +127,43 @@ exports.login = (Model) =>
     createSendToken(doc, 200, req, res);
   });
 
+exports.forgetPassword = (Model) =>
+  catchAsync(async (req, res, next) => {
+    const doc = await Model.findOne({ email: req.body.email });
+    if (!doc) {
+      return next(new AppError(`There is no user with that email.`, 404));
+    }
+
+    const resetToken = doc.createToken();
+
+    await doc.save({ validateBeforeSave: false });
+
+    try {
+      const resetURL = `${req.protocol}://${req.get("host")}/api/v1/${
+        doc.role
+      }s/resetPassword/${resetToken}`;
+      await new Email(doc, resetURL).sendPasswordReset();
+
+      res.status(200).json({
+        status: "success",
+        message: "link has sent to your email!",
+      });
+    } catch (err) {
+      console.log("Error", err);
+
+      doc.passwordResetToken = undefined;
+      doc.passwordResetExpires = undefined;
+      await doc.save({ validateBeforeSave: false });
+
+      return next(
+        new AppError(
+          "There eas an error sending the email. Try again later!",
+          500
+        )
+      );
+    }
+  });
+
 exports.protect = catchAsync(async (req, res, next) => {
   // 1) Getting token and check of it's there
   let token;
