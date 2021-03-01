@@ -13,6 +13,7 @@ router.post(
 );
 router.post("/login", authController.login(Seller));
 router.post("/forgetPassword", authController.forgetPassword(Seller));
+router.patch("/resetPassword/:token", authController.resetPassword(Seller));
 router.get(
   "/me",
   authController.protect,

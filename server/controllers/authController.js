@@ -115,7 +115,8 @@ exports.login = (Model) =>
 
     // 2) Check if user exists && password is correct
     const doc = await Model.findOne({ email: email }).select("+password");
-
+    console.log(req.body);
+    console.log(doc);
     if (!doc.emailConfirmed) {
       return next(new AppError("Verify Your email first!", 400));
     }
@@ -134,7 +135,7 @@ exports.forgetPassword = (Model) =>
       return next(new AppError(`There is no user with that email.`, 404));
     }
 
-    const resetToken = doc.createToken();
+    const resetToken = doc.createPasswordResetToken();
 
     await doc.save({ validateBeforeSave: false });
 
@@ -157,11 +158,49 @@ exports.forgetPassword = (Model) =>
 
       return next(
         new AppError(
-          "There eas an error sending the email. Try again later!",
+          "There was an error sending the email. Try again later!",
           500
         )
       );
     }
+  });
+
+exports.resetPassword = (Model) =>
+  catchAsync(async (req, res, next) => {
+    if (!req.body.password && !req.body.passwordConfirm) {
+      return next(
+        new AppError("you have enter password & confirm password both.", 400)
+      );
+    }
+
+    const hashedToken = crypto
+      .createHash("sha256")
+      .update(req.params.token)
+      .digest("hex");
+
+    console.log(hashedToken);
+
+    const user = await Model.findOne({
+      passwordResetToken: hashedToken,
+      passwordResetExpires: { $gt: Date.now() },
+    });
+
+    if (!user) {
+      return next(new AppError("Token is Invalid or has expired", 400));
+    }
+
+    user.password = req.body.password;
+    user.passwordConfirm = req.body.passwordConfirm;
+    user.passwordResetToken = undefined;
+    user.passwordResetExpires = undefined;
+    await user.save();
+
+    createSendToken(user, 200, req, res);
+    const token = signToken(user._id);
+    res.status(200).json({
+      status: "success",
+      token,
+    });
   });
 
 exports.protect = catchAsync(async (req, res, next) => {
