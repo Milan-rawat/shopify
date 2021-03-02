@@ -91,6 +91,8 @@ exports.emailConfirmation = (Model) =>
       emailConfirmationToken: hashedToken,
       emailConfirmationExpires: { $gt: Date.now() },
     });
+    console.log(hashedToken);
+    console.log(user);
 
     if (!user) {
       return next(new AppError("Token is Invalid or has expired!", 400));
@@ -201,6 +203,35 @@ exports.resetPassword = (Model) =>
       status: "success",
       token,
     });
+  });
+
+exports.updatePassword = (Model) =>
+  catchAsync(async (req, res, next) => {
+    if (!req.body.currentPassword) {
+      return next(new AppError("Please enter your old Password!", 400));
+    }
+    if (!req.body.newPassword) {
+      return next(new AppError("Please enter new Password!", 400));
+    }
+    if (!req.body.newPasswordConfirm) {
+      return next(new AppError("Please Confirm your new Password!", 400));
+    }
+    if (!(req.body.newPassword === req.body.newPasswordConfirm)) {
+      return next(new AppError("Your Confirm Password does not match", 400));
+    }
+    const user = await Model.findById(req.user._id).select("+password");
+
+    if (
+      !(await user.correctPassword(req.body.currentPassword, user.password))
+    ) {
+      return next(new AppError("Your current password is wrong.", 401));
+    }
+
+    user.password = req.body.newPassword;
+    user.passwordConfirm = req.body.newPasswordConfirm;
+    await user.save();
+
+    createSendToken(user, 200, req, res);
   });
 
 exports.protect = catchAsync(async (req, res, next) => {

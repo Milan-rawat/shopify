@@ -2,6 +2,7 @@ const User = require("../models/userModel");
 const Seller = require("../models/sellerModel");
 const catchAsync = require("../utils/catchAsync");
 const Email = require("../utils/email");
+const AppError = require("../utils/appError");
 
 exports.getMe = (req, res, next) => {
   req.params.id = req.user.id;
@@ -38,10 +39,11 @@ exports.emailVerification = (Model) =>
       console.log("ERROR", err);
       doc.emailConfirmationToken = undefined;
       doc.emailConfirmationExpires = undefined;
+      await doc.save({ validateBeforeSave: false });
 
       return next(
         new AppError(
-          "There was an Sending Link to your email. Try again later!"
+          "There was an error Sending Link to your email. Try again later!"
         ),
         500
       );
