@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const cookieParser = require("cookie-parser");
 
@@ -11,9 +12,12 @@ const productRouter = require("./routes/productRoutes");
 // Start express app
 const app = express();
 
+// Serving static files
+app.use(express.static(path.join(__dirname, "public")));
+
 // Middlewares
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 app.use(cookieParser());
 
 // Routes

@@ -1,5 +1,3 @@
-const User = require("../models/userModel");
-const Seller = require("../models/sellerModel");
 const catchAsync = require("../utils/catchAsync");
 const Email = require("../utils/email");
 const AppError = require("../utils/appError");
@@ -48,6 +46,35 @@ exports.emailVerification = (Model) =>
         500
       );
     }
+  });
+
+exports.updateMe = (Model) =>
+  catchAsync(async (req, res, next) => {
+    if (req.body.password || req.body.passwordConfirm) {
+      return next(
+        new AppError(
+          "This route is not for password updates. Please use /updateMyPassword",
+          400
+        )
+      );
+    }
+
+    const filteredBody = filterObj(req.body, "firstName", "lastName");
+    if (req.file) filteredBody.photo = req.file.filename;
+
+    const updatedDoc = await Model.findByIdAndUpdate(
+      req.user._id,
+      filteredBody,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    res.status(200).json({
+      status: "success",
+      data: updatedDoc,
+    });
   });
 
 exports.deleteMe = (Model) =>
