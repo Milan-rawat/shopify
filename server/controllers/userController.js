@@ -95,11 +95,8 @@ exports.updateMe = (Model) =>
       );
     }
 
-    console.log(req.file);
-    console.log(req.body);
-
     const filteredBody = filterObj(req.body, "firstName", "lastName");
-    // if (req.file) filteredBody.photo = req.file.filename;
+    if (req.file) filteredBody.photo = req.file.filename;
 
     const updatedDoc = await Model.findByIdAndUpdate(
       req.user._id,
