@@ -117,8 +117,7 @@ exports.login = (Model) =>
 
     // 2) Check if user exists && password is correct
     const doc = await Model.findOne({ email: email }).select("+password");
-    console.log(req.body);
-    console.log(doc);
+
     if (!doc.emailConfirmed) {
       return next(new AppError("Verify Your email first!", 400));
     }
