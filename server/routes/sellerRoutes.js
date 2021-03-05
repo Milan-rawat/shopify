@@ -23,6 +23,7 @@ router.patch(
   "/updateMe",
   authController.protect,
   userController.uploadUserPhoto,
+  userController.resizeUserPhoto,
   userController.updateMe(Seller)
 );
 router.get(
