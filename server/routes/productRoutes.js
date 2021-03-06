@@ -12,6 +12,7 @@ router
   .post(
     authController.protect,
     authController.allowedTo("seller"),
+    productController.uploadProductPhoto,
     productController.createProduct
   );
 

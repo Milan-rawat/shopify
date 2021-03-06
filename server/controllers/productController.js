@@ -1,8 +1,33 @@
-const User = require("../models/userModel");
+const multer = require("multer");
 const Seller = require("../models/sellerModel");
 const Product = require("../models/productModel");
 const AppError = require("../utils/appError");
 const catchAsync = require("../utils/catchAsync");
+
+const multerStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public/img/products");
+  },
+  filename: (req, file, cb) => {
+    const ext = file.mimetype.split("/")[1];
+    cb(null, `product-${req.user.id}-${Date.now()}.${ext}`);
+  },
+});
+
+const multerFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith("image")) {
+    cb(null, true);
+  } else {
+    cb(new AppError("Not an image! Please upload only images.", 404), false);
+  }
+};
+
+const upload = multer({
+  storage: multerStorage,
+  fileFilter: multerFilter,
+});
+
+exports.uploadProductPhoto = upload.single("prd_imageMain");
 
 exports.createProduct = catchAsync(async (req, res, next) => {
   const product = await Product.create({
@@ -11,7 +36,7 @@ exports.createProduct = catchAsync(async (req, res, next) => {
     prd_price: req.body.prd_price,
     prd_summary: req.body.prd_summary,
     prd_stock: req.body.prd_stock,
-    prd_imageMain: req.body.prd_imageMain,
+    prd_imageMain: req.file.filename,
     prd_images: req.body.prd_images,
     prd_description: req.body.prd_description,
     prd_seller: req.user._id,
