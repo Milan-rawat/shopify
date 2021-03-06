@@ -1,6 +1,4 @@
 const express = require("express");
-const User = require("../models/userModel");
-const Seller = require("../models/sellerModel");
 const productController = require("../controllers/productController");
 const authController = require("../controllers/authController");
 
@@ -22,6 +20,7 @@ router
   .patch(
     authController.protect,
     authController.allowedTo("seller"),
+    productController.uploadProductPhoto,
     productController.updateProduct
   )
   .delete(

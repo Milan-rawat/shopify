@@ -90,6 +90,8 @@ exports.updateProduct = catchAsync(async (req, res, next) => {
       runValidators: true,
     }
   );
+  updatedProduct.prd_imageMain = req.file.filename;
+  await updatedProduct.save();
 
   res.status(200).json({
     status: "success",
