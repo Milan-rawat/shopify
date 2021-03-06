@@ -1,6 +1,7 @@
 const User = require("../models/userModel");
 const Seller = require("../models/sellerModel");
 const Product = require("../models/productModel");
+const AppError = require("../utils/appError");
 const catchAsync = require("../utils/catchAsync");
 
 exports.createProduct = catchAsync(async (req, res, next) => {
@@ -49,6 +50,13 @@ exports.getProduct = catchAsync(async (req, res, next) => {
 });
 
 exports.updateProduct = catchAsync(async (req, res, next) => {
+  const product = await Product.findById(req.params.id);
+
+  if (!req.user._id.equals(product.prd_seller._id)) {
+    return next(
+      new AppError("Your are not alowed to update othres product", 400)
+    );
+  }
   const updatedProduct = await Product.findByIdAndUpdate(
     req.params.id,
     req.body,
