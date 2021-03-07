@@ -79,7 +79,7 @@ exports.updateProduct = catchAsync(async (req, res, next) => {
 
   if (!req.user._id.equals(product.prd_seller._id)) {
     return next(
-      new AppError("Your are not alowed to update othres product", 400)
+      new AppError("Your are not alowed to update othres product", 403)
     );
   }
   const updatedProduct = await Product.findByIdAndUpdate(
@@ -100,7 +100,15 @@ exports.updateProduct = catchAsync(async (req, res, next) => {
 });
 
 exports.deleteProduct = catchAsync(async (req, res, next) => {
-  await Product.findByIdAndUpdate(req.params.id, { active: false });
+  const product = await Product.findById(req.params.id);
+
+  if (!req.user._id.equals(product.prd_seller._id)) {
+    return next(
+      new AppError("You are not allowed to delete others product!", 403)
+    );
+  }
+  product.active = false;
+  await product.save();
 
   res.status(200).json({
     status: "success",
