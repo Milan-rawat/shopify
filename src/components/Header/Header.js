@@ -6,21 +6,26 @@ class header extends Component {
     return (
       <>
         <div className="Header">
-          <div className="upperNav">
+          <div className="leftNav">
             <div className="burgerMenu_box">
-              <i>menu</i>
+              <i className="fa fa-bars" id="header_icon"></i>
             </div>
             <div className="logo_box">
-              <i>Shopify</i>
+              <i id="header_icon">Shopify</i>
             </div>
+          </div>
+          <div className="rightNav">
             <div className="search_box">
-              <i>Search</i>
+              <i className="fa fa-search" id="header_icon"></i>
+            </div>
+            <div className="wish_box">
+              <i className="fa fa-heart" id="header_icon"></i>
             </div>
             <div className="cart_box">
-              <i>Cart</i>
+              <i className="fa fa-shopping-cart" id="header_icon"></i>
             </div>
             <div className="account_box">
-              <i>Account</i>
+              <i className="fa fa-user" id="header_icon"></i>
             </div>
           </div>
         </div>
