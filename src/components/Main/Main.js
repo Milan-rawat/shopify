@@ -4,16 +4,16 @@ import Slider from "infinite-react-carousel";
 
 class Main extends Component {
   render() {
-    const settings = {
+    const bannerSettings = {
       autoplay: true,
-      dots: true,
+      // dots: true,
       duration: 100,
     };
     return (
       <>
         <div className="homeMain">
           <div className="bannerSlider">
-            <Slider {...settings}>
+            <Slider {...bannerSettings}>
               <div className="banner">
                 <h3>1</h3>
               </div>
@@ -45,6 +45,111 @@ class Main extends Component {
                 <h3>10</h3>
               </div>
             </Slider>
+          </div>
+
+          <div className="homeFeaturedProductsBox">
+            <span className="featuredHeading">
+              <h3>Featured</h3>
+            </span>
+            <div className="homeFeaturedProducts">
+              <div className="featuredProducts">
+                <h1>1</h1>
+              </div>
+              <div className="featuredProducts">
+                <h1>2</h1>
+              </div>
+              <div className="featuredProducts">
+                <h1>3</h1>
+              </div>
+              <div className="featuredProducts">
+                <h1>4</h1>
+              </div>
+              <div className="featuredProducts">
+                <h1>5</h1>
+              </div>
+              <div className="featuredProducts">
+                <h1>6</h1>
+              </div>
+              <div className="featuredProducts">
+                <h1>7</h1>
+              </div>
+              <div className="featuredProducts">
+                <h1>8</h1>
+              </div>
+              <div className="featuredProducts">
+                <h1>9</h1>
+              </div>
+            </div>
+          </div>
+
+          <div className="homeFeaturedProductsBox">
+            <span className="featuredHeading">
+              <h3>Featured</h3>
+            </span>
+            <div className="homeFeaturedProducts">
+              <div className="featuredProducts">
+                <h1>1</h1>
+              </div>
+              <div className="featuredProducts">
+                <h1>2</h1>
+              </div>
+              <div className="featuredProducts">
+                <h1>3</h1>
+              </div>
+              <div className="featuredProducts">
+                <h1>4</h1>
+              </div>
+              <div className="featuredProducts">
+                <h1>5</h1>
+              </div>
+              <div className="featuredProducts">
+                <h1>6</h1>
+              </div>
+              <div className="featuredProducts">
+                <h1>7</h1>
+              </div>
+              <div className="featuredProducts">
+                <h1>8</h1>
+              </div>
+              <div className="featuredProducts">
+                <h1>9</h1>
+              </div>
+            </div>
+          </div>
+
+          <div className="homeFeaturedProductsBox">
+            <span className="featuredHeading">
+              <h3>Featured</h3>
+            </span>
+            <div className="homeFeaturedProducts">
+              <div className="featuredProducts">
+                <h1>1</h1>
+              </div>
+              <div className="featuredProducts">
+                <h1>2</h1>
+              </div>
+              <div className="featuredProducts">
+                <h1>3</h1>
+              </div>
+              <div className="featuredProducts">
+                <h1>4</h1>
+              </div>
+              <div className="featuredProducts">
+                <h1>5</h1>
+              </div>
+              <div className="featuredProducts">
+                <h1>6</h1>
+              </div>
+              <div className="featuredProducts">
+                <h1>7</h1>
+              </div>
+              <div className="featuredProducts">
+                <h1>8</h1>
+              </div>
+              <div className="featuredProducts">
+                <h1>9</h1>
+              </div>
+            </div>
           </div>
         </div>
       </>
