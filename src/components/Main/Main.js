@@ -122,6 +122,24 @@ class Main extends Component {
             </div>
           </div>
 
+          <div className="mayLikeProductBox">
+            <span className="mayLikeProductsHeading">You may like</span>
+            <div className="mayLikeProducts">
+              <div className="mayLikeProduct">
+                <h1>1</h1>
+              </div>
+              <div className="mayLikeProduct">
+                <h1>2</h1>
+              </div>
+              <div className="mayLikeProduct">
+                <h1>3</h1>
+              </div>
+              <div className="mayLikeProduct">
+                <h1>4</h1>
+              </div>
+            </div>
+          </div>
+
           <div className="homeFeaturedProductsBox">
             <span className="featuredHeading">
               <h3>Featured</h3>

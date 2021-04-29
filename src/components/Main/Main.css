@@ -66,3 +66,38 @@
   border: 1px solid black;
   background-color: white;
 }
+.mayLikeProductBox {
+  width: auto;
+  height: auto;
+  margin: 10px 5px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+}
+.mayLikeProductsHeading {
+  height: 30px;
+  width: 100%;
+  padding: 5px;
+  font-weight: bold;
+  background-color: aqua;
+}
+.mayLikeProducts {
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+}
+.mayLikeProduct {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 140px;
+  height: 140px;
+  background-color: whitesmoke;
+  border: 1px solid black;
+  margin: 10px;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+}
