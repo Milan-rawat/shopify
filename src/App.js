@@ -1,5 +1,6 @@
 import "./App.css";
 import Home from "./Pages/Home/Home";
+import Account from "./Pages/Account/Account";
 import { BrowserRouter, Route } from "react-router-dom";
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Route path="/" exact={true} component={Home} />
+        <Route path="/user/account" component={Account} />
       </BrowserRouter>
     </div>
   );

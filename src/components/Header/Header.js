@@ -31,10 +31,14 @@ class header extends Component {
       <>
         <Menu
           customBurgerIcon={false}
+          customCrossIcon={false}
           isOpen={this.state.menuOpen}
           onStateChange={(state) => this.handleStateChange(state)}
           width={"280px"}
         >
+          <div className="sidemenuHead">
+            <h1>Image</h1>
+          </div>
           <a
             onClick={() => this.closeMenu()}
             id="home"
@@ -42,6 +46,30 @@ class header extends Component {
             href="/"
           >
             Home
+          </a>
+          <a
+            onClick={() => this.closeMenu()}
+            id="account"
+            className="menu-item"
+            href="/account"
+          >
+            Account
+          </a>
+          <a
+            onClick={() => this.closeMenu()}
+            id="wishlist"
+            className="menu-item"
+            href="/wishlist"
+          >
+            Wishlist
+          </a>
+          <a
+            onClick={() => this.closeMenu()}
+            id="cart"
+            className="menu-item"
+            href="/cart"
+          >
+            Cart
           </a>
           <a
             onClick={() => this.closeMenu()}
