@@ -50,6 +50,10 @@ Note: Beware of modifying this element as it can break the animations - you shou
   margin: 0;
 }
 
+.sidemenuHead {
+  border: 1px solid white;
+}
+
 /* Individual item */
 .bm-item {
   display: inline-block;
@@ -61,8 +65,8 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 .bm-item:hover {
   border: 1px solid white;
-  border-radius: 5px;
-  padding: 8px;
+  /* border-radius: 5px;
+  padding: 8px; */
 }
 
 /* Styling of overlay */
@@ -102,6 +106,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 #header_icon {
   font-size: 18px;
+  color: black;
 }
 .logo_box {
   display: flex;

@@ -51,7 +51,7 @@ class header extends Component {
             onClick={() => this.closeMenu()}
             id="account"
             className="menu-item"
-            href="/account"
+            href="/user/account"
           >
             Account
           </a>
@@ -115,13 +115,19 @@ class header extends Component {
               <i className="fa fa-search" id="header_icon"></i>
             </div>
             <div className="wish_box">
-              <i className="fa fa-heart" id="header_icon"></i>
+              <a href="/user/wishlist">
+                <i className="fa fa-heart" id="header_icon" />
+              </a>
             </div>
             <div className="cart_box">
-              <i className="fa fa-shopping-cart" id="header_icon"></i>
+              <a href="/user/cart">
+                <i className="fa fa-shopping-cart" id="header_icon" />
+              </a>
             </div>
             <div className="account_box">
-              <i className="fa fa-user" id="header_icon"></i>
+              <a href="/user/account">
+                <i className="fa fa-user" id="header_icon" />
+              </a>
             </div>
           </div>
         </div>

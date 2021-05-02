@@ -1,5 +1,10 @@
 import React, { Component } from "react";
 import "./Main.css";
+import bannerSlider1 from "../Images/bannerSlider1.jpg";
+import bannerSlider2 from "../Images/bannerSlider2.jpg";
+import bannerSlider3 from "../Images/bannerSlider3.jpg";
+import bannerSlider4 from "../Images/bannerSlider4.jpg";
+import bannerSlider5 from "../Images/bannerSlider5.jpg";
 import Slider from "infinite-react-carousel";
 
 class Main extends Component {
@@ -55,34 +60,34 @@ class Main extends Component {
           <div className="bannerSlider">
             <Slider {...bannerSettings}>
               <div className="banner">
-                <h3>1</h3>
+                <img id="bannerImage" src={bannerSlider1} alt="Banner image" />
               </div>
               <div className="banner">
-                <h3>2</h3>
+                <img id="bannerImage" src={bannerSlider2} alt="Banner image" />
               </div>
               <div className="banner">
-                <h3>3</h3>
+                <img id="bannerImage" src={bannerSlider3} alt="Banner image" />
               </div>
               <div className="banner">
-                <h3>4</h3>
+                <img id="bannerImage" src={bannerSlider4} alt="Banner image" />
               </div>
               <div className="banner">
-                <h3>5</h3>
+                <img id="bannerImage" src={bannerSlider5} alt="Banner image" />
               </div>
               <div className="banner">
-                <h3>6</h3>
+                <img id="bannerImage" src={bannerSlider1} alt="Banner image" />
               </div>
               <div className="banner">
-                <h3>7</h3>
+                <img id="bannerImage" src={bannerSlider2} alt="Banner image" />
               </div>
               <div className="banner">
-                <h3>8</h3>
+                <img id="bannerImage" src={bannerSlider3} alt="Banner image" />
               </div>
               <div className="banner">
-                <h3>9</h3>
+                <img id="bannerImage" src={bannerSlider4} alt="Banner image" />
               </div>
               <div className="banner">
-                <h3>10</h3>
+                <img id="bannerImage" src={bannerSlider5} alt="Banner image" />
               </div>
             </Slider>
           </div>
