@@ -5,6 +5,13 @@ import bannerSlider2 from "../Images/bannerSlider2.jpg";
 import bannerSlider3 from "../Images/bannerSlider3.jpg";
 import bannerSlider4 from "../Images/bannerSlider4.jpg";
 import bannerSlider5 from "../Images/bannerSlider5.jpg";
+import categoryImage1 from "../Images/categoryImage1.png";
+import categoryImage2 from "../Images/categoryImage2.png";
+import categoryImage3 from "../Images/categoryImage3.png";
+import categoryImage4 from "../Images/categoryImage4.png";
+import categoryImage5 from "../Images/categoryImage5.png";
+import categoryImage6 from "../Images/categoryImage6.png";
+import categoryImage7 from "../Images/categoryImage7.png";
 import Slider from "infinite-react-carousel";
 
 class Main extends Component {
@@ -20,42 +27,54 @@ class Main extends Component {
           <div className="categoryBox">
             {/* <div className="categories"> */}
             <div className="category">
-              <h1>1</h1>
+              <img
+                id="categoryImage"
+                src={categoryImage1}
+                alt="category image"
+              />
             </div>
             <div className="category">
-              <h1>2</h1>
+              <img
+                id="categoryImage"
+                src={categoryImage2}
+                alt="category image"
+              />
             </div>
             <div className="category">
-              <h1>3</h1>
+              <img
+                id="categoryImage"
+                src={categoryImage3}
+                alt="category image"
+              />
             </div>
             <div className="category">
-              <h1>4</h1>
+              <img
+                id="categoryImage"
+                src={categoryImage4}
+                alt="category image"
+              />
             </div>
             <div className="category">
-              <h1>5</h1>
+              <img
+                id="categoryImage"
+                src={categoryImage5}
+                alt="category image"
+              />
             </div>
             <div className="category">
-              <h1>6</h1>
+              <img
+                id="categoryImage"
+                src={categoryImage6}
+                alt="category image"
+              />
             </div>
             <div className="category">
-              <h1>7</h1>
+              <img
+                id="categoryImage"
+                src={categoryImage7}
+                alt="category image"
+              />
             </div>
-            <div className="category">
-              <h1>8</h1>
-            </div>
-            <div className="category">
-              <h1>9</h1>
-            </div>
-            <div className="category">
-              <h1>10</h1>
-            </div>
-            <div className="category">
-              <h1>11</h1>
-            </div>
-            <div className="category">
-              <h1>12</h1>
-            </div>
-            {/* </div> */}
           </div>
           <div className="bannerSlider">
             <Slider {...bannerSettings}>
