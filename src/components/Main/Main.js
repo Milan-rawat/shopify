@@ -1,17 +1,18 @@
 import React, { Component } from "react";
 import "./Main.css";
-import bannerSlider1 from "../Images/bannerSlider1.jpg";
-import bannerSlider2 from "../Images/bannerSlider2.jpg";
-import bannerSlider3 from "../Images/bannerSlider3.jpg";
-import bannerSlider4 from "../Images/bannerSlider4.jpg";
-import bannerSlider5 from "../Images/bannerSlider5.jpg";
-import categoryImage1 from "../Images/categoryImage1.png";
-import categoryImage2 from "../Images/categoryImage2.png";
-import categoryImage3 from "../Images/categoryImage3.png";
-import categoryImage4 from "../Images/categoryImage4.png";
-import categoryImage5 from "../Images/categoryImage5.png";
-import categoryImage6 from "../Images/categoryImage6.png";
-import categoryImage7 from "../Images/categoryImage7.png";
+import sliderBanner1 from "../Images/sliderBanner1.jpg";
+import sliderBanner2 from "../Images/sliderBanner2.jpg";
+import sliderBanner3 from "../Images/sliderBanner3.jpg";
+import sliderBanner4 from "../Images/sliderBanner4.jpg";
+import sliderBanner5 from "../Images/sliderBanner5.jpg";
+import sliderBanner6 from "../Images/sliderBanner6.jpg";
+import categoryImg1 from "../Images/categoryImg1.png";
+import categoryImg2 from "../Images/categoryImg2.png";
+import categoryImg3 from "../Images/categoryImg3.png";
+import categoryImg4 from "../Images/categoryImg4.png";
+import categoryImg5 from "../Images/categoryImg5.png";
+import categoryImg6 from "../Images/categoryImg6.png";
+import categoryImg7 from "../Images/categoryImg7.png";
 import Slider from "infinite-react-carousel";
 
 class Main extends Component {
@@ -27,86 +28,46 @@ class Main extends Component {
           <div className="categoryBox">
             {/* <div className="categories"> */}
             <div className="category">
-              <img
-                id="categoryImage"
-                src={categoryImage1}
-                alt="category image"
-              />
+              <img id="categoryImage" src={categoryImg1} alt="category" />
             </div>
             <div className="category">
-              <img
-                id="categoryImage"
-                src={categoryImage2}
-                alt="category image"
-              />
+              <img id="categoryImage" src={categoryImg2} alt="category" />
             </div>
             <div className="category">
-              <img
-                id="categoryImage"
-                src={categoryImage3}
-                alt="category image"
-              />
+              <img id="categoryImage" src={categoryImg3} alt="category" />
             </div>
             <div className="category">
-              <img
-                id="categoryImage"
-                src={categoryImage4}
-                alt="category image"
-              />
+              <img id="categoryImage" src={categoryImg4} alt="category" />
             </div>
             <div className="category">
-              <img
-                id="categoryImage"
-                src={categoryImage5}
-                alt="category image"
-              />
+              <img id="categoryImage" src={categoryImg5} alt="category" />
             </div>
             <div className="category">
-              <img
-                id="categoryImage"
-                src={categoryImage6}
-                alt="category image"
-              />
+              <img id="categoryImage" src={categoryImg6} alt="category" />
             </div>
             <div className="category">
-              <img
-                id="categoryImage"
-                src={categoryImage7}
-                alt="category image"
-              />
+              <img id="categoryImage" src={categoryImg7} alt="category" />
             </div>
           </div>
           <div className="bannerSlider">
             <Slider {...bannerSettings}>
               <div className="banner">
-                <img id="bannerImage" src={bannerSlider1} alt="Banner image" />
+                <img id="bannerImage" src={sliderBanner1} alt="Product Offer" />
               </div>
               <div className="banner">
-                <img id="bannerImage" src={bannerSlider2} alt="Banner image" />
+                <img id="bannerImage" src={sliderBanner2} alt="Product Offer" />
               </div>
               <div className="banner">
-                <img id="bannerImage" src={bannerSlider3} alt="Banner image" />
+                <img id="bannerImage" src={sliderBanner3} alt="Product Offer" />
               </div>
               <div className="banner">
-                <img id="bannerImage" src={bannerSlider4} alt="Banner image" />
+                <img id="bannerImage" src={sliderBanner4} alt="Product Offer" />
               </div>
               <div className="banner">
-                <img id="bannerImage" src={bannerSlider5} alt="Banner image" />
+                <img id="bannerImage" src={sliderBanner5} alt="Product Offer" />
               </div>
               <div className="banner">
-                <img id="bannerImage" src={bannerSlider1} alt="Banner image" />
-              </div>
-              <div className="banner">
-                <img id="bannerImage" src={bannerSlider2} alt="Banner image" />
-              </div>
-              <div className="banner">
-                <img id="bannerImage" src={bannerSlider3} alt="Banner image" />
-              </div>
-              <div className="banner">
-                <img id="bannerImage" src={bannerSlider4} alt="Banner image" />
-              </div>
-              <div className="banner">
-                <img id="bannerImage" src={bannerSlider5} alt="Banner image" />
+                <img id="bannerImage" src={sliderBanner6} alt="Product Offer" />
               </div>
             </Slider>
           </div>

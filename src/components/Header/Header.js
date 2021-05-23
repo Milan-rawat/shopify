@@ -91,7 +91,7 @@ class header extends Component {
             onClick={() => this.closeMenu()}
             // onClick={this.showSettings}
             className="menu-item--small"
-            href=""
+            href="/#"
           >
             Settings
           </a>
