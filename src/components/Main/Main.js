@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import "./Main.css";
 
+import mayLikeProductImage1 from "../Images/mayLikeProductImage1.jpeg";
+import mayLikeProductImage2 from "../Images/mayLikeProductImage2.jpeg";
+import mayLikeProductImage3 from "../Images/mayLikeProductImage3.jpeg";
+import mayLikeProductImage4 from "../Images/mayLikeProductImage4.jpeg";
 import sliderBanner1 from "../Images/sliderBanner1.jpg";
 import sliderBanner2 from "../Images/sliderBanner2.jpg";
 import sliderBanner3 from "../Images/sliderBanner3.jpg";
@@ -113,16 +117,32 @@ class Main extends Component {
           <span className="mayLikeProductsHeading">You may like</span>
           <div className="mayLikeProducts">
             <div className="mayLikeProduct">
-              <h1>1</h1>
+              <img
+                id="mayLikeProductImage"
+                src={mayLikeProductImage1}
+                alt="you may like"
+              />
             </div>
             <div className="mayLikeProduct">
-              <h1>2</h1>
+              <img
+                id="mayLikeProductImage"
+                src={mayLikeProductImage2}
+                alt="you may like"
+              />
             </div>
             <div className="mayLikeProduct">
-              <h1>3</h1>
+              <img
+                id="mayLikeProductImage"
+                src={mayLikeProductImage3}
+                alt="you may like"
+              />
             </div>
             <div className="mayLikeProduct">
-              <h1>4</h1>
+              <img
+                id="mayLikeProductImage"
+                src={mayLikeProductImage4}
+                alt="you may like"
+              />
             </div>
           </div>
         </div>
