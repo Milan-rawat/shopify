@@ -125,7 +125,7 @@ class header extends Component {
               </a>
             </div>
             <div className="account_box">
-              <a href="/user/account">
+              <a href="/user/signup">
                 <i className="fa fa-user" id="header_icon" />
               </a>
             </div>
