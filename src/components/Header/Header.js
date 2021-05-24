@@ -120,7 +120,7 @@ class header extends Component {
               </a>
             </div>
             <div className="cart_box">
-              <a href="/user/cart">
+              <a href="/user/mycart">
                 <i className="fa fa-shopping-cart" id="header_icon" />
               </a>
             </div>
