@@ -45,6 +45,9 @@ class Signup extends Component {
             </a>
           </div>
         </div>
+        <div className="forCopy" id="otherfields">
+          <span id="copyright">Copyright © Shopify 2021.</span>
+        </div>
       </div>
     );
   }

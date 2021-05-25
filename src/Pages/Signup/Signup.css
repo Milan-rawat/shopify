@@ -14,8 +14,8 @@ input:focus {
   width: 100%;
   max-width: 450px;
   height: auto;
-  margin: 10px 20px;
-  padding: 20px 10px;
+  /* margin: 10px 20px; */
+  padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -31,8 +31,8 @@ input:focus {
 }
 .signupBox .textInput {
   width: 100%;
-  height: 45px;
-  padding: 3px 5px;
+  height: 55px;
+  padding: 3px 15px;
   font-size: 16px;
   border: 1px solid grey;
   border-radius: 3px;
@@ -42,15 +42,16 @@ input:focus {
   padding: 25px 0;
   /* border: 5px solid red; */
 }
-.signupBox .agreeCheckbox input {
+.signupBox .agreeCheckbox #agreeCheckbox {
   height: 20px;
-  border: 1px solid black;
+  width: 20px;
+  /* border: 1px solid black; */
 }
 .signupBox #inputfields #signupButton {
   width: 100%;
-  height: 45px;
+  height: 40px;
   font-size: 16px;
-  background-color: rgba(10, 30, 180, 0.808);
+  background-color: rgba(10, 30, 180, 0.8);
   border-radius: 4px;
   display: flex;
   justify-content: center;
@@ -66,7 +67,7 @@ input:focus {
   max-width: 450px;
   height: auto;
   margin: 0 20px;
-  padding: 20px 10px;
+  padding: 0 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -76,7 +77,6 @@ input:focus {
 .signupOthers .forSignin {
   width: 100%;
   height: auto;
-
   text-align: end;
 }
 
@@ -86,4 +86,17 @@ input:focus {
 }
 .forSignin #signinLink:hover {
   text-decoration: underline;
+}
+
+.signupPage .forCopy {
+  height: 90px;
+  width: 100%;
+  max-width: 450px;
+  /* margin: 30px 0; */
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  text-align: center;
+  color: grey;
+  font-size: 14px;
 }
