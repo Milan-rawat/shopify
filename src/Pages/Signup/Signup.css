@@ -10,11 +10,11 @@ input:focus {
   height: 100%;
   background-color: rgb(248, 248, 248);
 }
-.signupPageHead {
+.signupPage .signupPageHead {
   margin-top: 20px;
   font-size: 28px;
 }
-.signupBox {
+.signupPage .signupBox {
   width: 100%;
   max-width: 450px;
   height: auto;
@@ -29,10 +29,10 @@ input:focus {
   height: auto;
   margin: 10px 0;
 }
-.signupBox #inputfields label {
+.signupPage .signupBox #inputfields label {
   margin: 3px 5px;
 }
-.signupBox .textInput {
+.signupPage .signupBox .textInput {
   width: 100%;
   height: 55px;
   padding: 3px 15px;
@@ -41,14 +41,14 @@ input:focus {
   border-radius: 3px;
   background-color: rgb(248, 248, 248);
 }
-.signupBox .agreeCheckbox {
+.signupPage .signupBox .agreeCheckbox {
   padding: 25px 0;
 }
-.signupBox .agreeCheckbox #agreeCheckbox {
+.signupPage .signupBox .agreeCheckbox #agreeCheckbox {
   height: 20px;
   width: 20px;
 }
-.signupBox #inputfields #signupButton {
+.signupPage .signupBox #inputfields #signupButton {
   width: 100%;
   height: 40px;
   font-size: 16px;
@@ -63,7 +63,7 @@ input:focus {
 
 /* Others below input field */
 
-.signupOthers {
+.signupPage .signupOthers {
   width: 100%;
   max-width: 450px;
   height: auto;
@@ -75,17 +75,17 @@ input:focus {
   align-items: center;
 }
 
-.signupOthers .forSignin {
+.signupPage .signupOthers .forSignin {
   width: 100%;
   height: auto;
   text-align: end;
 }
 
-.forSignin #signinLink {
+.signupPage .forSignin #signinLink {
   text-decoration: none;
   color: rgba(10, 30, 180, 0.8);
 }
-.forSignin #signinLink:hover {
+.signupPage .forSignin #signinLink:hover {
   text-decoration: underline;
 }
 
