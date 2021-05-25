@@ -31,6 +31,10 @@ class Signup extends Component {
             <label htmlFor="inputPassword">Password</label>
             <input className="textInput" id="inputPassword" type="password" />
           </div>
+          <div className="confirmPassword" id="inputfields">
+            <label htmlFor="confirmPassword">Confirm Password</label>
+            <input className="textInput" id="confirmPassword" type="password" />
+          </div>
           <div className="agreeCheckbox" id="inputfields">
             <input id="agreeCheckbox" type="checkbox" />
             <label htmlFor="agreeCheckbox">
