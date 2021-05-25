@@ -38,7 +38,7 @@ class Signup extends Component {
             </label>
           </div>
           <div className="signupButton" id="inputfields">
-            <div id="signupButton">SIGNUP</div>
+            <div id="signupButton">SIGN UP</div>
           </div>
         </div>
         <div className="signupOthers">
