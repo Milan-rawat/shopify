@@ -5,6 +5,9 @@ class Signup extends Component {
   render() {
     return (
       <div className="signupPage">
+        <div className="signupPageHead">
+          <span>Signup</span>
+        </div>
         <div className="signupBox">
           <div className="inputName" id="inputfields">
             <label htmlFor="inputName">Full Name</label>

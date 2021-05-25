@@ -7,15 +7,18 @@ input:focus {
   align-items: center;
   flex-direction: column;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   background-color: rgb(248, 248, 248);
+}
+.signupPageHead {
+  margin-top: 20px;
+  font-size: 28px;
 }
 .signupBox {
   width: 100%;
   max-width: 450px;
   height: auto;
-  /* margin: 10px 20px; */
-  padding: 10px;
+  padding: 15px 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -40,12 +43,10 @@ input:focus {
 }
 .signupBox .agreeCheckbox {
   padding: 25px 0;
-  /* border: 5px solid red; */
 }
 .signupBox .agreeCheckbox #agreeCheckbox {
   height: 20px;
   width: 20px;
-  /* border: 1px solid black; */
 }
 .signupBox #inputfields #signupButton {
   width: 100%;
@@ -89,10 +90,10 @@ input:focus {
 }
 
 .signupPage .forCopy {
-  height: 90px;
+  height: 70px;
   width: 100%;
   max-width: 450px;
-  /* margin: 30px 0; */
+  padding: 10px 0;
   display: flex;
   justify-content: center;
   align-items: flex-end;
