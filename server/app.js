@@ -1,6 +1,7 @@
 const path = require("path");
 const express = require("express");
 const cookieParser = require("cookie-parser");
+const cors = require("cors");
 
 const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controllers/errorController");
@@ -11,6 +12,11 @@ const productRouter = require("./routes/productRoutes");
 
 // Start express app
 const app = express();
+
+// Cross-Origin_Resource-Share
+app.use(cors());
+
+// app.options("*", cors());
 
 // Serving static files
 app.use(express.static(path.join(__dirname, "public")));

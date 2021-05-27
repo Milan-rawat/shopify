@@ -51,7 +51,7 @@ exports.signup = (Model) =>
     });
 
     const signupToken = newDoc.createToken();
-    await newDoc.save({ validateBeforeSave: false });
+    await newDoc.save({ validateBeforeSave: true });
 
     try {
       const signupURL = `${req.protocol}://${req.get("host")}/api/v1/${
